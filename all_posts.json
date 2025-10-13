@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "filename": "test.md",
+    "title": "<Title>",
+    "date": "2025-10-13T00:00:00.000Z",
+    "preview": "<content...",
+    "sectionName": "Musings",
+    "sectionLink": "musings.html"
+  }
+]
