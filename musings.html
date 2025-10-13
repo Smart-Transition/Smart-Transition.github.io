@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbox - A Blog</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/favicon.ico" type="favicon">
+</head>
+<body>
+    <header class="page-header">
+        <nav class="simple-nav">
+            <a href="index.html" class="simple-nav-button">Home</a>
+            <a href="diversions.html" class="simple-nav-button">Diversions</a>
+            <a href="obligations.html" class="simple-nav-button">Obligations</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-heading">Blogs</h1>
+        <p class="main-content-text">Explanation for the blogs goes here</p>
+        
+        <!-- IMPORTANT: The data-category attribute tells our script which JSON to load -->
+        <section id="posts-container" class="post-section" data-category="musings">
+            Loading posts...
+        </section>
+    </main>
+
+    <footer>—</footer>
+    
+    <!-- We no longer need marked.js on this page -->
+    <!-- Link to the new REUSABLE script -->
+    <script src="js/category_page.js"></script>
+
+</body>
+</html>

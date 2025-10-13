@@ -1,0 +1,407 @@
+/*
+================================================
+=== YOUR WEBSITE'S COLOR PALETTE ===
+================================================
+You can easily change the look of your entire
+site by modifying the color values below.
+The 'c-' prefix stands for 'color'.
+*/
+:root {
+  /* --- Primary & Accent Colors --- */
+  --c-primary: #3B0764;          /* Deep purple for backgrounds, borders, highlights */
+  --c-accent: #C084FC;           /* Vibrant purple for links, buttons, quotes */
+  --c-accent-light: #E9D5FF;     /* Light purple for hover effects */
+  --c-accent-alt: #8A2BE2;        /* Alternative purple for specific hovers (e.g., icons) */
+
+
+  /* --- Background Colors --- */
+  --c-bg-main: #333333 ;              /* Main page background, same as primary */
+  --c-bg-dark-element: #1E1B2E;    /* Darker purple for UI elements like buttons */
+  --c-bg-content-box: #2D2A32;    /* Dark gray/purple for content cards */
+  --c-bg-light-translucent: rgba(255, 255, 255, 0.95); /* For the white nav bar on blog pages */
+  --c-bg-light-gray: #f0f0f0;        /* Light gray for some buttons/UI */
+  --c-bg-code-block: #f4f4f4;       /* Background for `code` snippets */
+  --c-bg-light-hover: #f5f5f5;      /* A very light gray for hover on white elements */
+
+
+  /* --- Blog Page Gradient --- */
+  --c-bg-blog-gradient-start: #2c0044;
+  --c-bg-blog-gradient-end: #1a0029;
+
+
+  /* --- Text Colors --- */
+  --c-text-light: white;           /* Main text color on dark backgrounds */
+  --c-text-dark: #333;             /* Main text color on light backgrounds */
+  --c-text-dark-soft: #444;        /* Slightly lighter dark text */
+  --c-text-dark-muted: #666;      /* Muted gray text */
+  --c-text-icon: #555;            /* For icons */
+
+
+  /* --- Borders & Dividers --- */
+  --c-border-light: #ddd;
+  --c-border-very-light: #eee;
+  --c-border-medium: #ccc;
+
+
+  /* --- Shadows (using rgba for transparency) --- */
+  --c-shadow-dark: rgba(0, 0, 0, 0.3);
+  --c-shadow-medium: rgba(0, 0, 0, 0.2);
+  --c-shadow-heavy: rgba(0, 0, 0, 0.5);
+  --c-shadow-translucent-hover: #1a00291c; /* For the circular back button hover */
+}
+
+
+/* Basic Setup */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    
+    /* --- NEW BACKGROUND STYLES --- */
+    background-color: black;
+
+    /* We will need to change the default text color now */
+    color: var(--c-text-light); /* A light gray for all default text */
+
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header and Profile Section */
+.main-header {
+    position: relative;
+    width: 100%;
+    margin-bottom: 150px; /* Space for the profile area to overlap */
+}
+
+
+/* Latest Section */
+main {
+    padding: 20px;
+    width: 80%;
+    margin: 0 auto;
+    flex-grow: 1;
+}
+
+.latest-section h2 {
+    font-size: 2em;
+    border-bottom: 2px solid var(--c-border-light);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    color: var(--c-text-light);
+}
+
+.latest-item {
+    background-color: var(--c-bg-content-box);
+    border: 1px solid var(--c-border-light);
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.latest-content {
+    flex-grow: 1;
+}
+
+.latest-item-header {
+    margin-bottom: 10px;
+}
+
+.latest-item-header .title-link, .latest-item-header .section-link {
+    position: relative;
+    color: var(--c-accent);
+    text-decoration: none;
+    font-weight: bold;
+    z-index: 1;
+    transition: color 0.3s ease-in-out;
+}
+
+.latest-item-header .title-link::after, .latest-item-header .section-link::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--c-primary); /* The highlight color */
+    transform: scaleX(0); /* Initially, the highlight is hidden (0 width) */
+    transform-origin: left; /* Animation starts from the left */
+    transition: transform 0.3s ease-in-out; /* The smooth animation */
+}
+.latest-item-header .title-link:hover, .latest-item-header .section-link:hover {
+    color: var(--c-accent-light);
+}
+
+.latest-item-header .title-link:hover::after, .latest-item-header .section-link:hover::after {
+    transform: scaleX(1);
+}
+
+.latest-item-header .title-link { font-size: 1.5em; }
+.latest-item-header .section-link { font-size: 1em; margin-left: 5px; }
+.latest-item .preview-text { color: var(--c-text-light); }
+.latest-item-image img {
+    max-width: 150px;
+    max-height: 150px;
+    object-fit: cover;
+    /* border: 1px solid #ccc; has been removed */
+}
+
+@keyframes appear {
+    0% { opacity: 0; scale: 0.5; }
+    45%, 55% { opacity: 1; scale: 1.2; }
+    100% { opacity: 0; scale: 0.5; }
+}
+
+/* This is used on blogs page */
+.post-section {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    text-align: center;
+}
+
+.post-item {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: appear linear both;
+    animation-timeline: view();
+
+}
+
+.post-item-header {
+    margin-bottom: 10px;
+}
+
+.post-item-header .title-link{
+    font-size: 2em;
+    position: relative;
+    color: var(--c-accent);
+    text-decoration: none;
+    font-weight: bold;
+    z-index: 1;
+    transition: color 0.3s ease-in-out;
+}
+
+.post-item-header .title-link::after{
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--c-primary); /* The highlight color */
+    transform: scaleX(0); /* Initially, the highlight is hidden (0 width) */
+    transform-origin: left; /* Animation starts from the left */
+    transition: transform 0.3s ease-in-out; /* The smooth animation */
+}
+.post-item-header .title-link:hover {
+    color: var(--c-accent-light);
+}
+
+.post-item-header .title-link:hover::after {
+    transform: scaleX(1);
+}
+
+
+.post-item .preview-text {
+    color: var(--c-text-light);
+}
+
+.post-item-date {
+    color: var(--c-text-light);
+}
+
+
+@media (max-width: 768px) {
+    .cover-photo { display: none; }
+    .main-header { position: static; margin-bottom: 20px; }
+    .profile-area { position: static; transform: none; display: flex; flex-direction: column; width: 100%; padding-top: 20px; gap: 20px; }
+    .profile-container { order: -1; }
+    .nav-blogs, .nav-memoirs, .nav-pastimes, .nav-career, .profile-container { grid-column: auto; grid-row: auto; align-self: auto; }
+    .nav-about { top: 2px; }
+    .nav-button { width: 80%; max-width: 300px; margin: 0 auto; }
+    .profile-picture { width: 250px; height: 250px; top: 0; }
+    .latest-item { flex-direction: column; text-align: center; }
+    .latest-item-image { margin-top: 15px; }
+    .latest-section h2 { font-size: 1.5em; }
+}
+
+/* ================================================= */
+/* === STYLES FOR SIMPLE INTERNAL PAGES (About, etc.) === */
+/* ================================================= */
+
+.page-header {
+    padding: 30px 20px;
+    border-bottom: 2px solid var(--c-primary); /* A subtle separator */
+}
+.simple-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.simple-nav-button {
+    color: var(--c-accent);
+    background-color: var(--c-bg-dark-element);
+    border: 2px solid var(--c-bg-main);
+    padding: 10px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    transition: transform 0.2s ease-in-out, background-color 0.2s, color 0.2s;
+}
+.simple-nav-button:hover {
+    transform: scale(1.2);
+    background-color: var(--c-primary);
+    color: var(--c-accent-light);
+}
+
+.page-heading {
+    font-size: 2em;
+    color: var(--c-text-light);
+    margin-bottom: 15px;
+}
+
+.main-content-text {
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: var(--c-text-light); /* Light gray for easy reading */
+    margin-bottom: 20px;
+}
+
+.content-divider {
+    border: 0;
+    height: 2px;
+    background-color: var(--c-primary);
+    margin: 40px 0 20px 0;
+}
+
+.quote-text {
+    font-family: Georgia, serif;
+    font-size: 2em;
+    font-style: italic;
+    text-align: left;
+    color: var(--c-accent);
+    padding: 0 0 0 10px;
+    border: none;
+}
+
+/* --- Styles for the Individual Blog Page (blog.html) --- */
+
+/* Apply the dark purple background to the blog page */
+.blog-page-body {
+    background: linear-gradient(to bottom, var(--c-bg-blog-gradient-start), var(--c-bg-blog-gradient-end));
+    color: var(--c-accent-light);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.blog-page-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: var(--c-bg-light-translucent);
+    color: var(--c-text-dark);
+    box-shadow: 0 2px 10px var(--c-shadow-dark);
+    border-bottom: 1px solid var(--c-border-light);
+}
+
+.go-back-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 50%;
+    color: var(--c-text-icon);
+    transition: background-color 0.2s, color 0.2s;
+    text-decoration: none;
+}
+.go-back-btn svg {
+    width: 30px;
+    height: 30px;
+}
+.go-back-btn:hover {
+    background-color: var(--c-shadow-translucent-hover); /* A light gray background on hover */
+    color: var(--c-accent-alt); /* This changes the SVG stroke color to purple */
+}
+
+.jump-to-container { position: relative; }
+.jump-to-btn {
+    background-color: var(--c-bg-light-gray);
+    border: 1px solid var(--c-border-medium);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.jump-to-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: var(--c-text-light);
+    box-shadow: 0 4px 12px var(--c-shadow-medium);
+    border-radius: 5px;
+    z-index: 1000;
+    min-width: 150px;
+    padding: 0.5rem 0;
+    list-style: none;
+}
+.jump-to-container:hover .jump-to-dropdown { display: block; }
+.jump-to-dropdown a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: var(--c-text-dark);
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+.jump-to-dropdown a:hover { background-color: var(--c-bg-light-hover); }
+
+.blog-container {
+    background-color: var(--c-text-light);
+    color: var(--c-text-dark); /* Dark text for readability */
+    width: 90%;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 40px 50px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px var(--c-shadow-heavy);
+}
+
+.blog-container h1 {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 2.8rem;
+    color: var(--c-bg-blog-gradient-start);
+    margin-top: 0;
+    border-bottom: 2px solid var(--c-border-very-light);
+    padding-bottom: 15px;
+}
+
+#blog-content {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--c-text-dark-soft);
+}
+#blog-content p { margin-bottom: 1.5em; }
+#blog-content code {
+    background-color: var(--c-bg-code-block);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+}
