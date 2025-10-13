@@ -1,9 +1,9 @@
 [
   {
     "filename": "test.md",
-    "title": "<Title>",
+    "title": "test post",
     "date": "2025-10-13T00:00:00.000Z",
-    "preview": "<content...",
+    "preview": "Lorem ipsum...",
     "sectionName": "Musings",
     "sectionLink": "musings.html"
   }
